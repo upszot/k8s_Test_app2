@@ -1,0 +1,7 @@
+# Values para el entorno Desarrollo
+OTRA_VARIABLE: "Valor de Desarrollo"
+REPLICAS: 1
+IMAGE: "upszot/test-app1"
+TAG: "latest"
+
+WICARD_DNS_CLUSTER: "dev.metallb.pert.com.ar" 

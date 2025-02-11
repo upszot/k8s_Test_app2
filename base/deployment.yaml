@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $(APP_NAME) # Nombre del Deployment usando la variable
+spec:
+  replicas: ${REPLICAS}
+  selector:
+    matchLabels:
+      app: $(APP_NAME) # Selector usando la variable
+  template:
+    metadata:
+      labels:
+        app: $(APP_NAME) # Label usando la variable
+    spec:
+      containers:
+      - name: $(APP_NAME) # Nombre del contenedor usando la variable
+        image: ${IMAGE}:${TAG}
+        ports:
+        - containerPort: 80
+        envFrom:
+          - secretRef:
+              name: $(APP_NAME)-secret # Nombre del Secret usando la variable
+        env:
+          - name: OTRA_VARIABLE
+            valueFrom:
+              configMapKeyRef:
+                name: $(APP_NAME)-config # Nombre del ConfigMap usando la variable
+                key: OTRA_VARIABLE
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: $(APP_NAME)-config # Nombre del ConfigMap usando la variable

@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: $(APP_NAME)-ingress 
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`$(APP_NAME).$(WICARD_DNS_CLUSTER)`) 
+

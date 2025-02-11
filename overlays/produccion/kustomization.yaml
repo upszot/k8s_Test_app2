@@ -1,0 +1,19 @@
+resources:
+- ../../base
+- ../../config/app-name.yaml # Incluye el archivo app_name.yaml
+- ../../config/variables.yaml  # Incluye el archivo de variables comunes
+
+configMapGenerator:
+- name: $(APP_NAME)-config
+  literals:
+  - OTRA_VARIABLE=$(OTRA_VARIABLE)
+  - VARIABLE_COMUN_1=$(VARIABLE_COMUN_1) # Usa la variable común
+  - VARIABLE_COMUN_2=$(VARIABLE_COMUN_2) # Usa la variable común
+
+patchesStrategicMerge:
+- deployment.yaml
+- ingressroute.yaml
+
+namePrefix: $(APP_NAME)-
+namespace: $(APP_NAME)-produccion
+

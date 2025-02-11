@@ -1,0 +1,7 @@
+# Values para el entorno Produccion
+OTRA_VARIABLE: "Valor de Produccion"
+REPLICAS: 3
+IMAGE: "upszot/test-app1"
+TAG: "v4"
+
+WICARD_DNS_CLUSTER: "metallb.pert.com.ar" 

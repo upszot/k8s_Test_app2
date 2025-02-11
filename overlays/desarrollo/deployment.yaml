@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $(APP_NAME) # Debe coincidir con el nombre en base
+spec:
+  replicas: $(REPLICAS)
+  template:
+    spec:
+      containers:
+      - name: $(APP_NAME)
+        image: $(IMAGE):$(TAG)
